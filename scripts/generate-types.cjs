@@ -118,10 +118,9 @@ exports.generateForSchema = generateForSchema;
         if (!fs.existsSync(root)) continue;
         const jobs = [];
         walkDir(root, (filePath) => {
-            if (!filePath.endsWith('.js')) return;
-            if (/[/\\]examples[/\\]/.test(filePath)) return;
-            if (/[/\\]cli/.test(filePath)) return;
-            if (/[/\\]examples-.*/.test(filePath)) return;
+                if (!filePath.endsWith('.js')) return;
+                // Only skip anything inside an `examples` directory. Process everything else (including cli/client/server).
+                if (/[/\\]examples([/\\]|$)/.test(filePath)) return;
             jobs.push(filePath);
         });
 
