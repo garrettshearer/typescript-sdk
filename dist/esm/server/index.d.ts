@@ -1,4 +1,3 @@
-/// <reference path="../generated-types.d.ts" />
 import { Protocol, ProtocolOptions, RequestOptions } from '../shared/protocol.js';
 import { ClientCapabilities, CreateMessageRequest, ElicitRequest, ElicitResult, Implementation, ListRootsRequest, LoggingMessageNotification, Notification, Request, ResourceUpdatedNotification, Result, ServerCapabilities, ServerNotification, ServerRequest, ServerResult } from '../types.js';
 import type { CreateMessageResult, ListRootsResult, EmptyResult } from '../types.js';
@@ -44,7 +43,9 @@ export declare class Server<RequestT extends Request = Request, NotificationT ex
     private _capabilities;
     private _instructions?;
     /**
-     * Callback for when initialization has fully completed (i.e., the client has sent an `initialized` notification): Promise<ListRootsResult>;
+     * Callback for when initialization has fully completed (i.e., the client has sent an `initialized` notification).
+     */
+    oninitialized?: () => void;
     /**
      * Initializes this server with the given name and version information.
      */

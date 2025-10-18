@@ -1,4 +1,3 @@
-/// <reference path="../generated-types.d.ts" />
 import { Protocol, ProtocolOptions, RequestOptions } from '../shared/protocol.js';
 import { Transport } from '../shared/transport.js';
 import { CallToolRequest, CallToolResultSchema, CallToolResult, ClientCapabilities, ClientNotification, ClientRequest, ClientResult, CompatibilityCallToolResultSchema, CompleteRequest, GetPromptRequest, Implementation, ListPromptsRequest, ListResourcesRequest, ListResourceTemplatesRequest, ListToolsRequest, LoggingLevel, Notification, ReadResourceRequest, Request, Result, ServerCapabilities, SubscribeRequest, UnsubscribeRequest, CompleteResult, GetPromptResult, ListPromptsResult, ListResourcesResult } from '../types.js';
@@ -45,7 +44,7 @@ export declare class Client<RequestT extends Request = Request, NotificationT ex
     /**
      * Initializes this client with the given name and version information.
      */
-    constructor(_clientInfo: Implementation, options?: ClientOptions): Promise<ListToolsResult>;
+    constructor(_clientInfo: Implementation, options?: ClientOptions);
     /**
      * Registers new capabilities. This can only be called before connecting to a transport.
      *
