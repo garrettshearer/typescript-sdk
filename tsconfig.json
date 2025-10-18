@@ -14,6 +14,7 @@
         "isolatedModules": true,
         "skipLibCheck": true,
         "baseUrl": ".",
+        "types": ["node"],
         "paths": {
             "pkce-challenge": ["node_modules/pkce-challenge/dist/index.node"]
         }
