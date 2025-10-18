@@ -48,20 +48,25 @@
     ],
     "scripts": {
         "fetch:spec-types": "curl -o spec.types.ts https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/refs/heads/main/schema/draft/schema.ts",
-        "build": "npm run build:esm && npm run build:cjs",
+    "build": "npm run build:esm && npm run build:cjs && npm run generate-types-node",
         "build:esm": "mkdir -p dist/esm && echo '{\"type\": \"module\"}' > dist/esm/package.json && tsc -p tsconfig.prod.json",
         "build:esm:w": "npm run build:esm -- -w",
         "build:cjs": "mkdir -p dist/cjs && echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json && tsc -p tsconfig.cjs.json",
         "build:cjs:w": "npm run build:cjs -- -w",
         "examples:simple-server:w": "tsx --watch src/examples/server/simpleStreamableHttp.ts --oauth",
-        "prepack": "npm run build:esm && npm run build:cjs",
+    "prepack": "npm run build:esm && npm run build:cjs && npm run generate-types-node",
         "lint": "eslint src/ && prettier --check .",
         "lint:fix": "eslint src/ --fix && prettier --write .",
         "test": "npm run fetch:spec-types && jest",
         "start": "npm run server",
         "server": "tsx watch --clear-screen=false src/cli.ts server",
         "client": "tsx src/cli.ts client"
+        ,
+        "generate-types": "tsx scripts/generate-types.ts",
+        "generate-types-node": "node scripts/generate-types.cjs"
     },
+    
+    
     "dependencies": {
         "ajv": "^6.12.6",
         "content-type": "^1.0.5",
@@ -98,7 +103,8 @@
         "tsx": "^4.16.5",
         "typescript": "^5.5.4",
         "typescript-eslint": "^8.0.0",
-        "ws": "^8.18.0"
+        "ws": "^8.18.0",
+        "zod-to-ts": "^1.2.0"
     },
     "resolutions": {
         "strip-ansi": "6.0.1"
