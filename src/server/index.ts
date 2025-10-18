@@ -32,6 +32,7 @@ import {
     LoggingLevelSchema
 } from '../types.js';
 import Ajv from 'ajv';
+import type { CreateMessageResult, ListRootsResult, EmptyResult } from '../types.js';
 
 export type ServerOptions = ProtocolOptions & {
     /**
@@ -277,11 +278,11 @@ export class Server<
         return this._capabilities;
     }
 
-    async ping() {
+    async ping(): Promise<EmptyResult> {
         return this.request({ method: 'ping' }, EmptyResultSchema);
     }
 
-    async createMessage(params: CreateMessageRequest['params'], options?: RequestOptions) {
+    async createMessage(params: CreateMessageRequest['params'], options?: RequestOptions): Promise<CreateMessageResult> {
         return this.request({ method: 'sampling/createMessage', params }, CreateMessageResultSchema, options);
     }
 
@@ -313,7 +314,7 @@ export class Server<
         return result;
     }
 
-    async listRoots(params?: ListRootsRequest['params'], options?: RequestOptions) {
+    async listRoots(params?: ListRootsRequest['params'], options?: RequestOptions): Promise<ListRootsResult> {
         return this.request({ method: 'roots/list', params }, ListRootsResultSchema, options);
     }
 
@@ -324,7 +325,7 @@ export class Server<
      * @param params
      * @param sessionId optional for stateless and backward compatibility
      */
-    async sendLoggingMessage(params: LoggingMessageNotification['params'], sessionId?: string) {
+    async sendLoggingMessage(params: LoggingMessageNotification['params'], sessionId?: string): Promise<void> {
         if (this._capabilities.logging) {
             if (!this.isMessageIgnored(params.level, sessionId)) {
                 return this.notification({ method: 'notifications/message', params });
@@ -332,24 +333,24 @@ export class Server<
         }
     }
 
-    async sendResourceUpdated(params: ResourceUpdatedNotification['params']) {
+    async sendResourceUpdated(params: ResourceUpdatedNotification['params']): Promise<void> {
         return this.notification({
             method: 'notifications/resources/updated',
             params
         });
     }
 
-    async sendResourceListChanged() {
+    async sendResourceListChanged(): Promise<void> {
         return this.notification({
             method: 'notifications/resources/list_changed'
         });
     }
 
-    async sendToolListChanged() {
+    async sendToolListChanged(): Promise<void> {
         return this.notification({ method: 'notifications/tools/list_changed' });
     }
 
-    async sendPromptListChanged() {
+    async sendPromptListChanged(): Promise<void> {
         return this.notification({ method: 'notifications/prompts/list_changed' });
     }
 }

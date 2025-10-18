@@ -49,7 +49,8 @@
     "scripts": {
         "prepare": "npm run build",
         "fetch:spec-types": "curl -o spec.types.ts https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/refs/heads/main/schema/draft/schema.ts",
-        "build": "npm run build:esm && npm run build:cjs && npm run generate-types-node",
+    "build": "npm run build:esm && npm run build:cjs && npm run generate-types-node",
+    "postbuild": "npm run generate-types-node",
         "build:esm": "mkdir -p dist/esm && echo '{\"type\": \"module\"}' > dist/esm/package.json && tsc -p tsconfig.prod.json",
         "build:esm:w": "npm run build:esm -- -w",
         "build:cjs": "mkdir -p dist/cjs && echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json && tsc -p tsconfig.cjs.json",
@@ -58,7 +59,7 @@
         "prepack": "npm run build:esm && npm run build:cjs && npm run generate-types-node",
         "lint": "eslint src/ && prettier --check .",
         "lint:fix": "eslint src/ --fix && prettier --write .",
-        "test": "npm run fetch:spec-types && jest",
+    "test": "npm run fetch:spec-types && npx jest",
         "start": "npm run server",
         "server": "tsx watch --clear-screen=false src/cli.ts server",
         "client": "tsx src/cli.ts client",

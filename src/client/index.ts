@@ -3,6 +3,7 @@ import { Transport } from '../shared/transport.js';
 import {
     CallToolRequest,
     CallToolResultSchema,
+    CallToolResult,
     ClientCapabilities,
     ClientNotification,
     ClientRequest,
@@ -36,8 +37,13 @@ import {
     UnsubscribeRequest,
     Tool,
     ErrorCode,
-    McpError
+    McpError,
+    CompleteResult,
+    GetPromptResult,
+    ListPromptsResult,
+    ListResourcesResult
 } from '../types.js';
+import { EmptyResult, ListResourceTemplatesResult, ReadResourceResult, ListToolsResult } from '../types.js';
 import Ajv from 'ajv';
 import type { ValidateFunction } from 'ajv';
 
@@ -286,43 +292,44 @@ export class Client<
         }
     }
 
-    async ping(options?: RequestOptions) {
+    async ping(options?: RequestOptions): Promise<EmptyResult> {
         return this.request({ method: 'ping' }, EmptyResultSchema, options);
     }
 
-    async complete(params: CompleteRequest['params'], options?: RequestOptions) {
+
+    async complete(params: CompleteRequest['params'], options?: RequestOptions): Promise<CompleteResult> {
         return this.request({ method: 'completion/complete', params }, CompleteResultSchema, options);
     }
 
-    async setLoggingLevel(level: LoggingLevel, options?: RequestOptions) {
+    async setLoggingLevel(level: LoggingLevel, options?: RequestOptions): Promise<EmptyResult> {
         return this.request({ method: 'logging/setLevel', params: { level } }, EmptyResultSchema, options);
     }
 
-    async getPrompt(params: GetPromptRequest['params'], options?: RequestOptions) {
+    async getPrompt(params: GetPromptRequest['params'], options?: RequestOptions): Promise<GetPromptResult> {
         return this.request({ method: 'prompts/get', params }, GetPromptResultSchema, options);
     }
 
-    async listPrompts(params?: ListPromptsRequest['params'], options?: RequestOptions) {
+    async listPrompts(params?: ListPromptsRequest['params'], options?: RequestOptions): Promise<ListPromptsResult> {
         return this.request({ method: 'prompts/list', params }, ListPromptsResultSchema, options);
     }
 
-    async listResources(params?: ListResourcesRequest['params'], options?: RequestOptions) {
+    async listResources(params?: ListResourcesRequest['params'], options?: RequestOptions): Promise<ListResourcesResult> {
         return this.request({ method: 'resources/list', params }, ListResourcesResultSchema, options);
     }
 
-    async listResourceTemplates(params?: ListResourceTemplatesRequest['params'], options?: RequestOptions) {
+    async listResourceTemplates(params?: ListResourceTemplatesRequest['params'], options?: RequestOptions): Promise<ListResourceTemplatesResult> {
         return this.request({ method: 'resources/templates/list', params }, ListResourceTemplatesResultSchema, options);
     }
 
-    async readResource(params: ReadResourceRequest['params'], options?: RequestOptions) {
+    async readResource(params: ReadResourceRequest['params'], options?: RequestOptions): Promise<ReadResourceResult> {
         return this.request({ method: 'resources/read', params }, ReadResourceResultSchema, options);
     }
 
-    async subscribeResource(params: SubscribeRequest['params'], options?: RequestOptions) {
+    async subscribeResource(params: SubscribeRequest['params'], options?: RequestOptions): Promise<EmptyResult> {
         return this.request({ method: 'resources/subscribe', params }, EmptyResultSchema, options);
     }
 
-    async unsubscribeResource(params: UnsubscribeRequest['params'], options?: RequestOptions) {
+    async unsubscribeResource(params: UnsubscribeRequest['params'], options?: RequestOptions): Promise<EmptyResult> {
         return this.request({ method: 'resources/unsubscribe', params }, EmptyResultSchema, options);
     }
 
@@ -330,7 +337,7 @@ export class Client<
         params: CallToolRequest['params'],
         resultSchema: typeof CallToolResultSchema | typeof CompatibilityCallToolResultSchema = CallToolResultSchema,
         options?: RequestOptions
-    ) {
+    ): Promise<CallToolResult> {
         const result = await this.request({ method: 'tools/call', params }, resultSchema, options);
 
         // Check if the tool has an outputSchema
@@ -368,7 +375,7 @@ export class Client<
             }
         }
 
-        return result;
+        return result as unknown as CallToolResult;
     }
 
     private cacheToolOutputSchemas(tools: Tool[]) {
@@ -391,7 +398,7 @@ export class Client<
         return this._cachedToolOutputValidators.get(toolName);
     }
 
-    async listTools(params?: ListToolsRequest['params'], options?: RequestOptions) {
+    async listTools(params?: ListToolsRequest['params'], options?: RequestOptions): Promise<ListToolsResult> {
         const result = await this.request({ method: 'tools/list', params }, ListToolsResultSchema, options);
 
         // Cache the tools and their output schemas for future validation
@@ -400,7 +407,7 @@ export class Client<
         return result;
     }
 
-    async sendRootsListChanged() {
+    async sendRootsListChanged(): Promise<void> {
         return this.notification({ method: 'notifications/roots/list_changed' });
     }
 }

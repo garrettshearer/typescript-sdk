@@ -1,5 +1,7 @@
+/// <reference path="../generated-types.d.ts" />
 import { Protocol, ProtocolOptions, RequestOptions } from '../shared/protocol.js';
 import { ClientCapabilities, CreateMessageRequest, ElicitRequest, ElicitResult, Implementation, ListRootsRequest, LoggingMessageNotification, Notification, Request, ResourceUpdatedNotification, Result, ServerCapabilities, ServerNotification, ServerRequest, ServerResult } from '../types.js';
+import type { CreateMessageResult, ListRootsResult, EmptyResult } from '../types.js';
 export type ServerOptions = ProtocolOptions & {
     /**
      * Capabilities to advertise as being supported by this server.
@@ -42,9 +44,7 @@ export declare class Server<RequestT extends Request = Request, NotificationT ex
     private _capabilities;
     private _instructions?;
     /**
-     * Callback for when initialization has fully completed (i.e., the client has sent an `initialized` notification).
-     */
-    oninitialized?: () => void;
+     * Callback for when initialization has fully completed (i.e., the client has sent an `initialized` notification): Promise<ListRootsResult>;
     /**
      * Initializes this server with the given name and version information.
      */
@@ -71,77 +71,10 @@ export declare class Server<RequestT extends Request = Request, NotificationT ex
      */
     getClientVersion(): Implementation | undefined;
     private getCapabilities;
-    ping(): Promise<{
-        _meta?: import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough"> | undefined;
-    }>;
-    createMessage(params: CreateMessageRequest['params'], options?: RequestOptions): Promise<import("zod").objectOutputType<import("zod").objectUtil.extendShape<{
-        _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-    }, {
-        model: import("zod").ZodString;
-        stopReason: import("zod").ZodOptional<import("zod").ZodUnion<[import("zod").ZodEnum<["endTurn", "stopSequence", "maxTokens"]>, import("zod").ZodString]>>;
-        role: import("zod").ZodEnum<["user", "assistant"]>;
-        content: import("zod").ZodDiscriminatedUnion<"type", [import("zod").ZodObject<{
-            type: import("zod").ZodLiteral<"text">;
-            text: import("zod").ZodString;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{
-            type: import("zod").ZodLiteral<"text">;
-            text: import("zod").ZodString;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{
-            type: import("zod").ZodLiteral<"text">;
-            text: import("zod").ZodString;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, import("zod").ZodTypeAny, "passthrough">>, import("zod").ZodObject<{
-            type: import("zod").ZodLiteral<"image">;
-            data: import("zod").ZodEffects<import("zod").ZodString, string, string>;
-            mimeType: import("zod").ZodString;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{
-            type: import("zod").ZodLiteral<"image">;
-            data: import("zod").ZodEffects<import("zod").ZodString, string, string>;
-            mimeType: import("zod").ZodString;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{
-            type: import("zod").ZodLiteral<"image">;
-            data: import("zod").ZodEffects<import("zod").ZodString, string, string>;
-            mimeType: import("zod").ZodString;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, import("zod").ZodTypeAny, "passthrough">>, import("zod").ZodObject<{
-            type: import("zod").ZodLiteral<"audio">;
-            data: import("zod").ZodEffects<import("zod").ZodString, string, string>;
-            mimeType: import("zod").ZodString;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{
-            type: import("zod").ZodLiteral<"audio">;
-            data: import("zod").ZodEffects<import("zod").ZodString, string, string>;
-            mimeType: import("zod").ZodString;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{
-            type: import("zod").ZodLiteral<"audio">;
-            data: import("zod").ZodEffects<import("zod").ZodString, string, string>;
-            mimeType: import("zod").ZodString;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, import("zod").ZodTypeAny, "passthrough">>]>;
-    }>, import("zod").ZodTypeAny, "passthrough">>;
+    ping(): Promise<EmptyResult>;
+    createMessage(params: CreateMessageRequest['params'], options?: RequestOptions): Promise<CreateMessageResult>;
     elicitInput(params: ElicitRequest['params'], options?: RequestOptions): Promise<ElicitResult>;
-    listRoots(params?: ListRootsRequest['params'], options?: RequestOptions): Promise<import("zod").objectOutputType<import("zod").objectUtil.extendShape<{
-        _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-    }, {
-        roots: import("zod").ZodArray<import("zod").ZodObject<{
-            uri: import("zod").ZodString;
-            name: import("zod").ZodOptional<import("zod").ZodString>;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{
-            uri: import("zod").ZodString;
-            name: import("zod").ZodOptional<import("zod").ZodString>;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{
-            uri: import("zod").ZodString;
-            name: import("zod").ZodOptional<import("zod").ZodString>;
-            _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
-        }, import("zod").ZodTypeAny, "passthrough">>, "many">;
-    }>, import("zod").ZodTypeAny, "passthrough">>;
+    listRoots(params?: ListRootsRequest['params'], options?: RequestOptions): Promise<ListRootsResult>;
     /**
      * Sends a logging message to the client, if connected.
      * Note: You only need to send the parameters object, not the entire JSON RPC message
