@@ -25,12 +25,16 @@ export type OAuthClientInformationFull = {
     client_secret_expires_at?: number | undefined;
 };
 
+export declare const OAuthClientInformationFullSchema: any;
+
 export type OAuthClientInformation = {
     client_id: string;
     client_secret?: string | undefined;
     client_id_issued_at?: number | undefined;
     client_secret_expires_at?: number | undefined;
 };
+
+export declare const OAuthClientInformationSchema: any;
 
 export type OAuthClientMetadata = {
     redirect_uris: string[];
@@ -51,16 +55,22 @@ export type OAuthClientMetadata = {
     software_statement?: string | undefined;
 };
 
+export declare const OAuthClientMetadataSchema: any;
+
 export type OAuthClientRegistrationError = {
     error: string;
     error_description?: string | undefined;
 };
+
+export declare const OAuthClientRegistrationErrorSchema: any;
 
 export type OAuthErrorResponse = {
     error: string;
     error_description?: string | undefined;
     error_uri?: string | undefined;
 };
+
+export declare const OAuthErrorResponseSchema: any;
 
 export type OAuthMetadata = {
     issuer: string;
@@ -83,6 +93,8 @@ export type OAuthMetadata = {
     code_challenge_methods_supported?: string[] | undefined;
 };
 
+export declare const OAuthMetadataSchema: any;
+
 export type OAuthProtectedResourceMetadata = {
     resource: string;
     authorization_servers?: string[] | undefined;
@@ -100,10 +112,14 @@ export type OAuthProtectedResourceMetadata = {
     dpop_bound_access_tokens_required?: boolean | undefined;
 };
 
+export declare const OAuthProtectedResourceMetadataSchema: any;
+
 export type OAuthTokenRevocationRequest = {
     token: string;
     token_type_hint?: string | undefined;
 };
+
+export declare const OAuthTokenRevocationRequestSchema: any;
 
 export type OAuthTokens = {
     access_token: string;
@@ -113,6 +129,8 @@ export type OAuthTokens = {
     scope?: string | undefined;
     refresh_token?: string | undefined;
 };
+
+export declare const OAuthTokensSchema: any;
 
 export type OpenIdProviderDiscoveryMetadata = {
     issuer: string;
@@ -153,6 +171,8 @@ export type OpenIdProviderDiscoveryMetadata = {
     code_challenge_methods_supported?: string[] | undefined;
 };
 
+export declare const OpenIdProviderDiscoveryMetadataSchema: any;
+
 export type OpenIdProviderMetadata = {
     issuer: string;
     authorization_endpoint: string;
@@ -191,9 +211,17 @@ export type OpenIdProviderMetadata = {
     op_tos_uri?: string | undefined;
 };
 
+export declare const OpenIdProviderMetadataSchema: any;
+
 export type OptionalSafeUrl = (string | undefined) | "";
 
+export declare const OptionalSafeUrlSchema: any;
+
 export type SafeUrl = string;
+
+export declare const SafeUrlSchema: any;
+
+export type AuthorizationServerMetadata = OAuthMetadata | OpenIdProviderDiscoveryMetadata;
 
 
 //# sourceMappingURL=auth.d.ts.map

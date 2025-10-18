@@ -4,7 +4,11 @@
 
 export type ProgressToken = string | number;
 
+export declare const ProgressTokenSchema: any;
+
 export type Cursor = string;
+
+export declare const CursorSchema: any;
 
 export type Request = {
     method: string;
@@ -15,6 +19,8 @@ export type Request = {
     } | undefined;
 };
 
+export declare const RequestSchema: any;
+
 export type Notification = {
     method: string;
     params?: {
@@ -22,11 +28,17 @@ export type Notification = {
     } | undefined;
 };
 
+export declare const NotificationSchema: any;
+
 export type Result = {
     _meta?: {} | undefined;
 };
 
+export declare const ResultSchema: any;
+
 export type RequestId = string | number;
+
+export declare const RequestIdSchema: any;
 
 export type JSONRPCRequest = {
     jsonrpc: "2.0";
@@ -39,6 +51,8 @@ export type JSONRPCRequest = {
     } | undefined;
 };
 
+export declare const JSONRPCRequestSchema: any;
+
 export type JSONRPCNotification = {
     jsonrpc: "2.0";
     method: string;
@@ -47,6 +61,8 @@ export type JSONRPCNotification = {
     } | undefined;
 };
 
+export declare const JSONRPCNotificationSchema: any;
+
 export type JSONRPCResponse = {
     jsonrpc: "2.0";
     id: string | number;
@@ -54,6 +70,8 @@ export type JSONRPCResponse = {
         _meta?: {} | undefined;
     };
 };
+
+export declare const JSONRPCResponseSchema: any;
 
 export type JSONRPCError = {
     jsonrpc: "2.0";
@@ -64,6 +82,8 @@ export type JSONRPCError = {
         data?: unknown | undefined;
     };
 };
+
+export declare const JSONRPCErrorSchema: any;
 
 export type JSONRPCMessage = {
     jsonrpc: "2.0";
@@ -96,9 +116,13 @@ export type JSONRPCMessage = {
     };
 };
 
+export declare const JSONRPCMessageSchema: any;
+
 export type EmptyResult = {
     _meta?: {} | undefined;
 };
+
+export declare const EmptyResultSchema: any;
 
 export type CancelledNotification = {
     method: "notifications/cancelled";
@@ -109,11 +133,15 @@ export type CancelledNotification = {
     };
 };
 
+export declare const CancelledNotificationSchema: any;
+
 export type Icon = {
     src: string;
     mimeType?: string | undefined;
     sizes?: string[] | undefined;
 };
+
+export declare const IconSchema: any;
 
 export type Icons = {
     icons?: {
@@ -123,10 +151,14 @@ export type Icons = {
     }[] | undefined;
 };
 
+export declare const IconsSchema: any;
+
 export type BaseMetadata = {
     name: string;
     title?: string | undefined;
 };
+
+export declare const BaseMetadataSchema: any;
 
 export type Implementation = {
     name: string;
@@ -140,6 +172,8 @@ export type Implementation = {
     }[] | undefined;
 };
 
+export declare const ImplementationSchema: any;
+
 export type ClientCapabilities = {
     experimental?: {} | undefined;
     sampling?: {} | undefined;
@@ -148,6 +182,8 @@ export type ClientCapabilities = {
         listChanged?: boolean | undefined;
     } | undefined;
 };
+
+export declare const ClientCapabilitiesSchema: any;
 
 export type InitializeRequest = {
     method: "initialize";
@@ -178,6 +214,8 @@ export type InitializeRequest = {
     };
 };
 
+export declare const InitializeRequestSchema: any;
+
 export type ServerCapabilities = {
     experimental?: {} | undefined;
     logging?: {} | undefined;
@@ -193,6 +231,8 @@ export type ServerCapabilities = {
         listChanged?: boolean | undefined;
     } | undefined;
 };
+
+export declare const ServerCapabilitiesSchema: any;
 
 export type InitializeResult = {
     _meta?: {} | undefined;
@@ -226,12 +266,16 @@ export type InitializeResult = {
     instructions?: string | undefined;
 };
 
+export declare const InitializeResultSchema: any;
+
 export type InitializedNotification = {
     method: "notifications/initialized";
     params?: {
         _meta?: {} | undefined;
     } | undefined;
 };
+
+export declare const InitializedNotificationSchema: any;
 
 export type PingRequest = {
     method: "ping";
@@ -242,11 +286,15 @@ export type PingRequest = {
     } | undefined;
 };
 
+export declare const PingRequestSchema: any;
+
 export type Progress = {
     progress: number;
     total?: number | undefined;
     message?: string | undefined;
 };
+
+export declare const ProgressSchema: any;
 
 export type ProgressNotification = {
     method: "notifications/progress";
@@ -259,6 +307,8 @@ export type ProgressNotification = {
     };
 };
 
+export declare const ProgressNotificationSchema: any;
+
 export type PaginatedRequest = {
     method: string;
     params?: {
@@ -269,16 +319,22 @@ export type PaginatedRequest = {
     } | undefined;
 };
 
+export declare const PaginatedRequestSchema: any;
+
 export type PaginatedResult = {
     _meta?: {} | undefined;
     nextCursor?: string | undefined;
 };
+
+export declare const PaginatedResultSchema: any;
 
 export type ResourceContents = {
     uri: string;
     mimeType?: string | undefined;
     _meta?: {} | undefined;
 };
+
+export declare const ResourceContentsSchema: any;
 
 export type TextResourceContents = {
     uri: string;
@@ -287,12 +343,16 @@ export type TextResourceContents = {
     text: string;
 };
 
+export declare const TextResourceContentsSchema: any;
+
 export type BlobResourceContents = {
     uri: string;
     mimeType?: string | undefined;
     _meta?: {} | undefined;
     blob: string;
 };
+
+export declare const BlobResourceContentsSchema: any;
 
 export type Resource = {
     name: string;
@@ -308,6 +368,8 @@ export type Resource = {
     }[] | undefined;
 };
 
+export declare const ResourceSchema: any;
+
 export type ResourceTemplate = {
     name: string;
     title?: string | undefined;
@@ -322,6 +384,8 @@ export type ResourceTemplate = {
     }[] | undefined;
 };
 
+export declare const ResourceTemplateSchema: any;
+
 export type ListResourcesRequest = {
     method: "resources/list";
     params?: {
@@ -331,6 +395,8 @@ export type ListResourcesRequest = {
         cursor?: string | undefined;
     } | undefined;
 };
+
+export declare const ListResourcesRequestSchema: any;
 
 export type ListResourcesResult = {
     _meta?: {} | undefined;
@@ -350,6 +416,8 @@ export type ListResourcesResult = {
     }[];
 };
 
+export declare const ListResourcesResultSchema: any;
+
 export type ListResourceTemplatesRequest = {
     method: "resources/templates/list";
     params?: {
@@ -359,6 +427,8 @@ export type ListResourceTemplatesRequest = {
         cursor?: string | undefined;
     } | undefined;
 };
+
+export declare const ListResourceTemplatesRequestSchema: any;
 
 export type ListResourceTemplatesResult = {
     _meta?: {} | undefined;
@@ -378,6 +448,8 @@ export type ListResourceTemplatesResult = {
     }[];
 };
 
+export declare const ListResourceTemplatesResultSchema: any;
+
 export type ReadResourceRequest = {
     method: "resources/read";
     params: {
@@ -387,6 +459,8 @@ export type ReadResourceRequest = {
         uri: string;
     };
 };
+
+export declare const ReadResourceRequestSchema: any;
 
 export type ReadResourceResult = {
     _meta?: {} | undefined;
@@ -403,12 +477,16 @@ export type ReadResourceResult = {
     })[];
 };
 
+export declare const ReadResourceResultSchema: any;
+
 export type ResourceListChangedNotification = {
     method: "notifications/resources/list_changed";
     params?: {
         _meta?: {} | undefined;
     } | undefined;
 };
+
+export declare const ResourceListChangedNotificationSchema: any;
 
 export type SubscribeRequest = {
     method: "resources/subscribe";
@@ -420,6 +498,8 @@ export type SubscribeRequest = {
     };
 };
 
+export declare const SubscribeRequestSchema: any;
+
 export type UnsubscribeRequest = {
     method: "resources/unsubscribe";
     params: {
@@ -430,6 +510,8 @@ export type UnsubscribeRequest = {
     };
 };
 
+export declare const UnsubscribeRequestSchema: any;
+
 export type ResourceUpdatedNotification = {
     method: "notifications/resources/updated";
     params: {
@@ -438,11 +520,15 @@ export type ResourceUpdatedNotification = {
     };
 };
 
+export declare const ResourceUpdatedNotificationSchema: any;
+
 export type PromptArgument = {
     name: string;
     description?: string | undefined;
     required?: boolean | undefined;
 };
+
+export declare const PromptArgumentSchema: any;
 
 export type Prompt = {
     name: string;
@@ -461,6 +547,8 @@ export type Prompt = {
     }[] | undefined;
 };
 
+export declare const PromptSchema: any;
+
 export type ListPromptsRequest = {
     method: "prompts/list";
     params?: {
@@ -470,6 +558,8 @@ export type ListPromptsRequest = {
         cursor?: string | undefined;
     } | undefined;
 };
+
+export declare const ListPromptsRequestSchema: any;
 
 export type ListPromptsResult = {
     _meta?: {} | undefined;
@@ -492,6 +582,8 @@ export type ListPromptsResult = {
     }[];
 };
 
+export declare const ListPromptsResultSchema: any;
+
 export type GetPromptRequest = {
     method: "prompts/get";
     params: {
@@ -505,11 +597,15 @@ export type GetPromptRequest = {
     };
 };
 
+export declare const GetPromptRequestSchema: any;
+
 export type TextContent = {
     type: "text";
     text: string;
     _meta?: {} | undefined;
 };
+
+export declare const TextContentSchema: any;
 
 export type ImageContent = {
     type: "image";
@@ -518,12 +614,16 @@ export type ImageContent = {
     _meta?: {} | undefined;
 };
 
+export declare const ImageContentSchema: any;
+
 export type AudioContent = {
     type: "audio";
     data: string;
     mimeType: string;
     _meta?: {} | undefined;
 };
+
+export declare const AudioContentSchema: any;
 
 export type EmbeddedResource = {
     type: "resource";
@@ -541,6 +641,8 @@ export type EmbeddedResource = {
     _meta?: {} | undefined;
 };
 
+export declare const EmbeddedResourceSchema: any;
+
 export type ResourceLink = {
     name: string;
     title?: string | undefined;
@@ -555,6 +657,8 @@ export type ResourceLink = {
     }[] | undefined;
     type: "resource_link";
 };
+
+export declare const ResourceLinkSchema: any;
 
 export type ContentBlock = {
     type: "text";
@@ -598,6 +702,8 @@ export type ContentBlock = {
     };
     _meta?: {} | undefined;
 };
+
+export declare const ContentBlockSchema: any;
 
 export type PromptMessage = {
     role: "user" | "assistant";
@@ -644,6 +750,8 @@ export type PromptMessage = {
         _meta?: {} | undefined;
     };
 };
+
+export declare const PromptMessageSchema: any;
 
 export type GetPromptResult = {
     _meta?: {} | undefined;
@@ -695,12 +803,16 @@ export type GetPromptResult = {
     }[];
 };
 
+export declare const GetPromptResultSchema: any;
+
 export type PromptListChangedNotification = {
     method: "notifications/prompts/list_changed";
     params?: {
         _meta?: {} | undefined;
     } | undefined;
 };
+
+export declare const PromptListChangedNotificationSchema: any;
 
 export type ToolAnnotations = {
     title?: string | undefined;
@@ -709,6 +821,8 @@ export type ToolAnnotations = {
     idempotentHint?: boolean | undefined;
     openWorldHint?: boolean | undefined;
 };
+
+export declare const ToolAnnotationsSchema: any;
 
 export type Tool = {
     name: string;
@@ -739,6 +853,8 @@ export type Tool = {
     }[] | undefined;
 };
 
+export declare const ToolSchema: any;
+
 export type ListToolsRequest = {
     method: "tools/list";
     params?: {
@@ -748,6 +864,8 @@ export type ListToolsRequest = {
         cursor?: string | undefined;
     } | undefined;
 };
+
+export declare const ListToolsRequestSchema: any;
 
 export type ListToolsResult = {
     _meta?: {} | undefined;
@@ -781,6 +899,8 @@ export type ListToolsResult = {
         }[] | undefined;
     }[];
 };
+
+export declare const ListToolsResultSchema: any;
 
 export type CallToolResult = {
     _meta?: {} | undefined;
@@ -829,6 +949,8 @@ export type CallToolResult = {
     structuredContent?: {} | undefined;
     isError?: boolean | undefined;
 };
+
+export declare const CallToolResultSchema: any;
 
 export type CompatibilityCallToolResult = {
     _meta?: {} | undefined;
@@ -881,6 +1003,8 @@ export type CompatibilityCallToolResult = {
     toolResult?: unknown;
 };
 
+export declare const CompatibilityCallToolResultSchema: any;
+
 export type CallToolRequest = {
     method: "tools/call";
     params: {
@@ -894,6 +1018,8 @@ export type CallToolRequest = {
     };
 };
 
+export declare const CallToolRequestSchema: any;
+
 export type ToolListChangedNotification = {
     method: "notifications/tools/list_changed";
     params?: {
@@ -901,7 +1027,11 @@ export type ToolListChangedNotification = {
     } | undefined;
 };
 
+export declare const ToolListChangedNotificationSchema: any;
+
 export type LoggingLevel = "debug" | "info" | "notice" | "warning" | "error" | "critical" | "alert" | "emergency";
+
+export declare const LoggingLevelSchema: any;
 
 export type SetLevelRequest = {
     method: "logging/setLevel";
@@ -913,6 +1043,8 @@ export type SetLevelRequest = {
     };
 };
 
+export declare const SetLevelRequestSchema: any;
+
 export type LoggingMessageNotification = {
     method: "notifications/message";
     params: {
@@ -923,9 +1055,13 @@ export type LoggingMessageNotification = {
     };
 };
 
+export declare const LoggingMessageNotificationSchema: any;
+
 export type ModelHint = {
     name?: string | undefined;
 };
+
+export declare const ModelHintSchema: any;
 
 export type ModelPreferences = {
     hints?: {
@@ -935,6 +1071,8 @@ export type ModelPreferences = {
     speedPriority?: number | undefined;
     intelligencePriority?: number | undefined;
 };
+
+export declare const ModelPreferencesSchema: any;
 
 export type SamplingMessage = {
     role: "user" | "assistant";
@@ -954,6 +1092,8 @@ export type SamplingMessage = {
         _meta?: {} | undefined;
     };
 };
+
+export declare const SamplingMessageSchema: any;
 
 export type CreateMessageRequest = {
     method: "sampling/createMessage";
@@ -996,6 +1136,8 @@ export type CreateMessageRequest = {
     };
 };
 
+export declare const CreateMessageRequestSchema: any;
+
 export type CreateMessageResult = {
     _meta?: {} | undefined;
     model: string;
@@ -1018,12 +1160,16 @@ export type CreateMessageResult = {
     };
 };
 
+export declare const CreateMessageResultSchema: any;
+
 export type BooleanSchema = {
     type: "boolean";
     title?: string | undefined;
     description?: string | undefined;
     default?: boolean | undefined;
 };
+
+export declare const BooleanSchemaSchema: any;
 
 export type StringSchema = {
     type: "string";
@@ -1034,6 +1180,8 @@ export type StringSchema = {
     format?: ("email" | "uri" | "date" | "date-time") | undefined;
 };
 
+export declare const StringSchemaSchema: any;
+
 export type NumberSchema = {
     type: "number" | "integer";
     title?: string | undefined;
@@ -1042,6 +1190,8 @@ export type NumberSchema = {
     maximum?: number | undefined;
 };
 
+export declare const NumberSchemaSchema: any;
+
 export type EnumSchema = {
     type: "string";
     title?: string | undefined;
@@ -1049,6 +1199,8 @@ export type EnumSchema = {
     enum: string[];
     enumNames?: string[] | undefined;
 };
+
+export declare const EnumSchemaSchema: any;
 
 export type PrimitiveSchemaDefinition = {
     type: "boolean";
@@ -1075,6 +1227,8 @@ export type PrimitiveSchemaDefinition = {
     enum: string[];
     enumNames?: string[] | undefined;
 };
+
+export declare const PrimitiveSchemaDefinitionSchema: any;
 
 export type ElicitRequest = {
     method: "elicitation/create";
@@ -1117,6 +1271,8 @@ export type ElicitRequest = {
     };
 };
 
+export declare const ElicitRequestSchema: any;
+
 export type ElicitResult = {
     _meta?: {} | undefined;
     action: "accept" | "decline" | "cancel";
@@ -1125,20 +1281,28 @@ export type ElicitResult = {
     } | undefined;
 };
 
+export declare const ElicitResultSchema: any;
+
 export type ResourceTemplateReference = {
     type: "ref/resource";
     uri: string;
 };
+
+export declare const ResourceTemplateReferenceSchema: any;
 
 export type ResourceReference = {
     type: "ref/resource";
     uri: string;
 };
 
+export declare const ResourceReferenceSchema: any;
+
 export type PromptReference = {
     type: "ref/prompt";
     name: string;
 };
+
+export declare const PromptReferenceSchema: any;
 
 export type CompleteRequest = {
     method: "completion/complete";
@@ -1165,6 +1329,8 @@ export type CompleteRequest = {
     };
 };
 
+export declare const CompleteRequestSchema: any;
+
 export type CompleteResult = {
     _meta?: {} | undefined;
     completion: {
@@ -1174,11 +1340,15 @@ export type CompleteResult = {
     };
 };
 
+export declare const CompleteResultSchema: any;
+
 export type Root = {
     uri: string;
     name?: string | undefined;
     _meta?: {} | undefined;
 };
+
+export declare const RootSchema: any;
 
 export type ListRootsRequest = {
     method: "roots/list";
@@ -1189,6 +1359,8 @@ export type ListRootsRequest = {
     } | undefined;
 };
 
+export declare const ListRootsRequestSchema: any;
+
 export type ListRootsResult = {
     _meta?: {} | undefined;
     roots: {
@@ -1198,12 +1370,16 @@ export type ListRootsResult = {
     }[];
 };
 
+export declare const ListRootsResultSchema: any;
+
 export type RootsListChangedNotification = {
     method: "notifications/roots/list_changed";
     params?: {
         _meta?: {} | undefined;
     } | undefined;
 };
+
+export declare const RootsListChangedNotificationSchema: any;
 
 export type ClientRequest = {
     method: "ping";
@@ -1350,6 +1526,8 @@ export type ClientRequest = {
     } | undefined;
 };
 
+export declare const ClientRequestSchema: any;
+
 export type ClientNotification = {
     method: "notifications/cancelled";
     params: {
@@ -1377,6 +1555,8 @@ export type ClientNotification = {
         _meta?: {} | undefined;
     } | undefined;
 };
+
+export declare const ClientNotificationSchema: any;
 
 export type ClientResult = {
     _meta?: {} | undefined;
@@ -1414,6 +1594,8 @@ export type ClientResult = {
         _meta?: {} | undefined;
     }[];
 };
+
+export declare const ClientResultSchema: any;
 
 export type ServerRequest = {
     method: "ping";
@@ -1509,6 +1691,8 @@ export type ServerRequest = {
     } | undefined;
 };
 
+export declare const ServerRequestSchema: any;
+
 export type ServerNotification = {
     method: "notifications/cancelled";
     params: {
@@ -1555,6 +1739,8 @@ export type ServerNotification = {
         _meta?: {} | undefined;
     } | undefined;
 };
+
+export declare const ServerNotificationSchema: any;
 
 export type ServerResult = {
     _meta?: {} | undefined;
@@ -1785,6 +1971,8 @@ export type ServerResult = {
         }[] | undefined;
     }[];
 };
+
+export declare const ServerResultSchema: any;
 
 
 //# sourceMappingURL=types.d.ts.map
