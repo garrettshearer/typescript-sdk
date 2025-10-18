@@ -296,7 +296,7 @@ export class StreamableHTTPClientTransport implements Transport {
         }, delay);
     }
 
-    private _handleSseStream(stream: ReadableStream<Uint8Array> | null, options: StartSSEOptions, isReconnectable: boolean): void {
+    private _handleSseStream(stream: ReadableStream<any> | null, options: StartSSEOptions, isReconnectable: boolean): void {
         if (!stream) {
             return;
         }
@@ -308,7 +308,8 @@ export class StreamableHTTPClientTransport implements Transport {
             // if something happens reader will throw
             try {
                 // Create a pipeline: binary stream -> text decoder -> SSE parser
-                const reader = stream.pipeThrough(new TextDecoderStream() as ReadableWritablePair<string, Uint8Array<ArrayBufferLike>>).pipeThrough(new EventSourceParserStream()).getReader();
+                // Decode binary stream to text, then parse SSE events
+                const reader = (stream as ReadableStream<any>).pipeThrough(new TextDecoderStream()).pipeThrough(new EventSourceParserStream()).getReader();
 
                 while (true) {
                     const { value: event, done } = await reader.read();
